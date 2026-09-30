@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="pl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zytsz • toxicshop.pl [HIGH ROLLER CASINO]</title>
+  
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,900;1,600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        casino: {
+                            gold: '#fbbf24',
+                            goldDark: '#d97706',
+                            red: '#991b1b',
+                            dark: '#09090b',
+                            card: '#121216'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cinzel', 'serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: #070709;
+            color: #f4f4f5;
+            overflow-x: hidden;
+            font-family: 'Cinzel', serif;
+            cursor: default;
+        }
+
+    
+        .glass-card {
+            background: rgba(15, 15, 19, 0.94);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.98), 0 0 50px rgba(251, 191, 36, 0.12);
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(251, 191, 36, 0.15),
+                transparent 50%
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+       
+        .casino-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #ffffff 0%, #fef3c7 40%, #fbbf24 70%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+            position: relative;
+            animation: casinoPulse 3.5s infinite ease-in-out;
+        }
+
+        @keyframes casinoPulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5)); }
+            50% { filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.9)); }
+        }
+
+      
+        .btn-casino {
+            position: relative;
+            background: rgba(22, 22, 28, 0.85);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .btn-casino::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0%;
+            background: #fbbf24;
+            transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
+        }
+
+        .btn-casino::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 3px;
+            height: 0%;
+            background: #fbbf24;
+            transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
+        }
+
+        .btn-casino:hover::before,
+        .btn-casino:hover::after {
+            height: 100%;
+        }
+
+        .btn-casino:hover {
+            transform: translateY(-3px) scale(1.01);
+            background: rgba(32, 32, 42, 0.95);
+            border-color: rgba(251, 191, 36, 0.7);
+            box-shadow: 0 12px 30px -4px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn-toxicshop {
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.25) 0%, rgba(22, 22, 28, 0.95) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+        }
+
+        .btn-toxicshop:hover {
+            border-color: rgba(251, 191, 36, 1);
+            box-shadow: 0 15px 35px -4px rgba(251, 191, 36, 0.6);
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 12px;
+            width: 12px;
+            border-radius: 2px;
+            background: #fbbf24;
+            box-shadow: 0 0 12px #fbbf24;
+            cursor: pointer;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.4);
+        }
+
+        @keyframes avatarGlow {
+            0%, 100% { box-shadow: 0 0 25px rgba(251, 191, 36, 0.4), inset 0 0 15px rgba(251, 191, 36, 0.2); }
+            50% { box-shadow: 0 0 45px rgba(251, 191, 36, 0.75), inset 0 0 25px rgba(251, 191, 36, 0.4); }
+        }
+
+        .avatar-glow {
+            animation: avatarGlow 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+
+        @keyframes entrancePulse {
+            0%, 100% { opacity: 0.85; transform: scale(1); text-shadow: 0 0 15px rgba(251,191,36,0.6); }
+            50% { opacity: 1; transform: scale(1.03); text-shadow: 0 0 35px rgba(251,191,36,1); }
+        }
+
+        .entrance-text {
+            animation: entrancePulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.12em;
+        }
+
+        .toast-enter {
+            animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translate(-50%, 30px) scale(0.85); }
+            to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+
+        .card-perspective {
+            perspective: 1400px;
+        }
+
+        .game-hud {
+            background: rgba(15, 15, 19, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.25);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardZoomFlyIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.35) translateZ(-500px) rotateX(35deg);
+                filter: blur(20px);
+            }
+            65% {
+                opacity: 1;
+                filter: blur(0px);
+                transform: scale(1.04) translateZ(30px) rotateX(-4deg);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0px);
+                transform: scale(1) translateZ(0) rotateX(0deg);
+            }
+        }
+
+        .animate-card-entrance {
+            animation: cardZoomFlyIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(25px) scale(0.92);
+            filter: blur(6px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-x-hidden selection:bg-amber-500 selection:text-black font-sans">
+
+   
+    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-auto z-0 cursor-crosshair"></canvas>
+
+   
+    <div id="gameHUD" class="fixed top-4 left-4 sm:top-6 sm:left-6 z-20 game-hud px-4 py-2.5 rounded-xl flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-mono pointer-events-none opacity-0">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-coins text-amber-400 animate-pulse"></i>
+            <span class="text-zinc-400">CHIPS:</span>
+            <span id="scoreVal" class="font-bold text-white text-sm">0</span>
+        </div>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <div class="flex items-center gap-1.5">
+            <span class="text-zinc-400">STREAK:</span>
+            <span id="comboVal" class="font-bold text-amber-400 text-sm">x1</span>
+        </div>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <div class="flex items-center gap-1.5">
+            <i class="fa-solid fa-trophy text-amber-400 text-[11px]"></i>
+            <span class="text-zinc-400">BEST:</span>
+            <span id="bestScoreVal" class="font-bold text-amber-400 text-sm">0</span>
+        </div>
+        <div class="h-4 w-[1px] bg-zinc-800"></div>
+        <div class="flex items-center gap-1.5">
+            <i class="fa-solid fa-crown text-amber-300 text-[11px]"></i>
+            <span class="text-zinc-400">VIP:</span>
+            <span id="rankVal" class="font-bold text-amber-300 text-sm font-mono">RECRUIT</span>
+        </div>
+    </div>
+
+  
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-950/20 rounded-full blur-[220px] pointer-events-none z-0"></div>
+
+  
+    <div id="entranceOverlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 backdrop-blur-2xl transition-all duration-700 ease-out cursor-pointer group">
+        <div class="text-center p-6 transform group-hover:scale-105 transition-transform duration-500">
+            <div class="text-amber-400 font-mono text-xs tracking-[0.4em] mb-3 uppercase">[ HIGH ROLLER ENTRANCE ]</div>
+            <h1 class="text-3xl sm:text-5xl font-black tracking-wider text-white entrance-text mb-4">
+                ENTER THE CASINO
+            </h1>
+            <p class="text-xs tracking-[0.3em] uppercase text-zinc-400 font-mono flex items-center justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+                zytsz • toxicshop.pl [CASINO ROYALE EDITION]
+            </p>
+        </div>
+        <div class="absolute bottom-10 text-zinc-600 text-[11px] font-mono tracking-widest uppercase">
+            [ KLIKNIJ, ABY ROZPOCZĄĆ ROZGRYWKĘ ]
+        </div>
+    </div>
+
+    
+    <main class="relative z-10 w-full max-w-md mx-4 my-8 card-perspective opacity-0 pointer-events-none" id="mainContainer">
+        
+        <div id="bioCard" class="glass-card rounded-2xl p-6 sm:p-8 text-white">
+            
+            
+            <div class="reveal-item absolute top-5 right-6 flex items-center gap-1.5 px-3 py-1 rounded-md bg-zinc-950/80 border border-amber-500/30 text-xs font-mono text-zinc-400 z-10">
+                <i class="fa-solid fa-eye text-amber-400 text-[10px]"></i>
+                <span id="viewsCounter" class="font-semibold text-zinc-200">0</span>
+                <span class="text-zinc-500">views</span>
+            </div>
+
+          
+            <div class="relative z-10 flex flex-col items-center text-center mt-2">
+                
+              
+                <div class="reveal-item relative mb-5 group">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl p-1 bg-gradient-to-b from-amber-500/60 via-red-950 to-black avatar-glow transition-transform duration-500 group-hover:scale-105">
+                        <img 
+                            src="https://i.pinimg.com/736x/1b/cd/cb/1bcdcb541b4421f1a5fb2767c2766789.jpg" 
+                            alt="zytsz PFP" 
+                            class="w-full h-full object-cover rounded-xl bg-zinc-950"
+                            onerror="this.src='https://placehold.co/200x200/070709/ffffff?text=ZYTSZ'"
+                        />
+                    </div>
+                    <div class="absolute -bottom-1 -right-1 px-2.5 py-0.5 rounded bg-zinc-950 border border-amber-500 text-[10px] font-mono text-amber-400 flex items-center gap-1 shadow-lg" title="VIP Status">
+                        <i class="fa-solid fa-crown text-[9px] text-amber-400"></i>
+                        VIP HIGH ROLLER
+                    </div>
+                </div>
+
+               
+                <div class="reveal-item flex items-center gap-2 mb-1">
+                    <h2 class="casino-title text-3xl sm:text-4xl font-black tracking-tight">
+                        [zytsz]
+                    </h2>
+                    <div class="text-amber-400 bg-amber-500/10 p-1.5 rounded-lg border border-amber-500/30 flex items-center justify-center">
+                        <i class="fa-solid fa-gem text-sm"></i>
+                    </div>
+                </div>
+
+               
+                <p class="reveal-item text-xs sm:text-sm text-zinc-400 font-medium mb-5 tracking-wider uppercase font-mono">
+                    Owner & Developer @ toxicshop.pl
+                </p>
+
+               
+                <div class="reveal-item flex flex-wrap items-center justify-center gap-2 mb-6">
+                    <a href="https://toxicshop.pl" target="_blank" class="px-3 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-1.5 hover:bg-amber-500/30 transition-all font-mono">
+                        <i class="fa-solid fa-store text-[11px]"></i>
+                        <span>toxicshop.pl</span>
+                    </a>
+                    <div class="px-3 py-1 rounded-lg bg-zinc-900/90 border border-zinc-800 text-zinc-300 text-xs font-mono flex items-center gap-1.5">
+                        <i class="fa-brands fa-discord text-indigo-400 text-[11px]"></i>
+                        <span>Discord: <strong class="text-white">zytsz</strong></span>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="relative z-10 space-y-3 mb-6">
+                
+               
+                <a href="https://toxicshop.pl" target="_blank" class="reveal-item btn-casino btn-toxicshop w-full py-3.5 px-4 rounded-xl flex items-center justify-between text-white font-semibold">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                            <i class="fa-solid fa-dice text-sm"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-bold text-white tracking-wide">TOXICSHOP.PL</div>
+                            <div class="text-[11px] text-zinc-400 font-mono">Oficjalny Sklep & Roblox</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-amber-400"></i>
+                </a>
+
+                
+                <button onclick="copyDiscordTag()" class="reveal-item btn-casino w-full py-3 px-4 rounded-xl flex items-center justify-between text-zinc-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-700/50 flex items-center justify-center text-indigo-400">
+                            <i class="fa-brands fa-discord text-base"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-semibold">Discord</div>
+                            <div class="text-[11px] text-zinc-400 font-mono">zytsz (Kliknij, aby skopiować)</div>
+                        </div>
+                    </div>
+                    <i class="fa-regular fa-copy text-xs text-zinc-500"></i>
+                </button>
+
+               
+                <a href="https://www.instagram.com/zytszydwu/" target="_blank" class="reveal-item btn-casino w-full py-3 px-4 rounded-xl flex items-center justify-between text-zinc-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-700/50 flex items-center justify-center text-pink-500">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-semibold">Instagram</div>
+                            <div class="text-[11px] text-zinc-400 font-mono">@zytszydwu</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i>
+                </a>
+
+               
+                <a href="https://www.tiktok.com/@zytsz7" target="_blank" class="reveal-item btn-casino w-full py-3 px-4 rounded-xl flex items-center justify-between text-zinc-200">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-zinc-800/60 border border-zinc-700/50 flex items-center justify-center text-cyan-400">
+                            <i class="fa-brands fa-tiktok text-base"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-semibold">TikTok</div>
+                            <div class="text-[11px] text-zinc-400 font-mono">@zytsz7</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-zinc-600"></i>
+                </a>
+            </div>
+
+           
+            <div class="reveal-item relative z-10 rounded-xl bg-zinc-950/90 border border-amber-500/20 p-4 overflow-hidden">
+                <canvas id="visualizerCanvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none"></canvas>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-record-vinyl text-amber-400 animate-spin text-xs" style="animation-duration: 8s;"></i>
+                            </div>
+                            <div class="truncate">
+                                <div class="text-xs font-bold text-white truncate font-mono">Juice WRLD - Empty Out Your Pockets</div>
+                                <div class="text-[10px] text-zinc-400 font-mono flex items-center gap-1.5 mt-0.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                    <span>VIP LOUNGE AUDIO</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="playPauseBtn" class="w-9 h-9 rounded-lg bg-amber-500 hover:bg-amber-600 text-black font-bold flex items-center justify-center shadow-lg shadow-amber-500/20 transition-all hover:scale-105 active:scale-95">
+                            <i id="playIcon" class="fa-solid fa-play text-xs ml-0.5"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-1 mb-2">
+                        <input type="range" id="progressBar" value="0" max="100" class="w-full h-1 cursor-pointer accent-amber-500">
+                        <div class="flex justify-between text-[10px] text-zinc-500 font-mono">
+                            <span id="currentTime">0:00</span>
+                            <span id="durationTime">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 pt-1 border-t border-zinc-900/80">
+                        <button id="muteBtn" class="text-zinc-400 hover:text-white text-xs transition-colors">
+                            <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
+                        </button>
+                        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.7" class="w-20 h-1 cursor-pointer accent-amber-500">
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="reveal-item relative z-10 mt-6 text-center">
+                <p class="text-[11px] text-zinc-500 font-mono tracking-wider uppercase">
+                    DESIGNED BY <span class="text-zinc-300 font-semibold hover:text-amber-400 transition-colors">zytsz7</span> // CASINO ROYALE
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <audio id="audioPlayer" preload="auto" loop crossorigin="anonymous">
+        <source src="https://files.catbox.moe/7um6wn.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-xl bg-zinc-900 border border-amber-500/50 shadow-2xl shadow-amber-500/20 text-white text-xs font-semibold flex items-center gap-2 pointer-events-none toast-enter font-mono">
+        <i class="fa-solid fa-circle-check text-amber-400 text-sm"></i>
+        <span id="toastMessage">Skopiowano tag Discord do schowka!</span>
+    </div>
+
+    
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', (e) => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || 
+                (e.ctrlKey && e.key.toUpperCase() === 'U')
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        
+        const originalTitle = document.title;
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                document.title = "zytsz pozdrawia 👋";
+            } else {
+                document.title = originalTitle;
+            }
+        });
+    </script>
+
+   
+    <script>
+        let audioCtx, analyser, source, dataArray;
+        let isAudioInitialized = false;
+
+        function playSFX(type) {
+            if (!audioCtx || audioCtx.state === 'suspended') return;
+            
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            const now = audioCtx.currentTime;
+            
+            if (type === 'click') {
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(200, now + 0.05);
+                gainNode.gain.setValueAtTime(0.05, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
+            } else if (type === 'chip') {
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1400, now);
+                osc.frequency.exponentialRampToValueAtTime(2800, now + 0.1);
+                gainNode.gain.setValueAtTime(0.1, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'jackpot') {
+               
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, now);
+                osc.frequency.exponentialRampToValueAtTime(3200, now + 0.3);
+                gainNode.gain.setValueAtTime(0.08, now);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a, button, input[type=range]').forEach(el => {
+                el.addEventListener('mousedown', () => playSFX('click'));
+            });
+        });
+    </script>
+
+    
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let score = 0;
+        let combo = 1;
+        let lastHitTime = 0;
+        let canInteractWithGame = false;
+
+        let highScore = localStorage.getItem('zytsz_high_score_casino') ? parseInt(localStorage.getItem('zytsz_high_score_casino')) : 0;
+
+        const scoreVal = document.getElementById('scoreVal');
+        const comboVal = document.getElementById('comboVal');
+        const bestScoreVal = document.getElementById('bestScoreVal');
+        const rankVal = document.getElementById('rankVal');
+
+        function getRankTitle(pts) {
+            if (pts >= 100000) return "CASINO KING";
+            if (pts >= 50000) return "HIGH ROLLER";
+            if (pts >= 25000) return "VIP WHALE";
+            if (pts >= 10000) return "PLAYER";
+            if (pts >= 4000) return "DEALER";
+            if (pts >= 1000) return "GAMBLER";
+            return "RECRUIT";
+        }
+
+        function updateHUD() {
+            scoreVal.textContent = score.toLocaleString();
+            comboVal.textContent = `x${combo}`;
+
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('zytsz_high_score_casino', highScore);
+            }
+            bestScoreVal.textContent = highScore.toLocaleString();
+            rankVal.textContent = getRankTitle(highScore);
+        }
+
+        updateHUD();
+
+        let bgCoins = [];
+        let targets = [];
+        let explosions = [];
+        let scoreTexts = [];
+        let shockwaves = [];
+
+        class CoinParticle {
+            constructor() { this.reset(); }
+            reset() {
+                const cardEl = document.getElementById('bioCard');
+                let cardLeft = width / 3;
+                let cardRight = (width / 3) * 2;
+                if (cardEl && cardEl.offsetHeight > 0) {
+                    const r = cardEl.getBoundingClientRect();
+                    cardLeft = r.left;
+                    cardRight = r.right;
+                }
+
+                if (Math.random() > 0.5) {
+                    this.x = Math.random() * (cardLeft - 20);
+                } else {
+                    this.x = cardRight + Math.random() * (width - cardRight - 20);
+                }
+
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 0.5;
+                this.alpha = Math.random() * 0.4 + 0.1;
+                this.vx = (Math.random() - 0.5) * 0.15;
+                this.vy = (Math.random() - 0.5) * 0.15;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                const cardEl = document.getElementById('bioCard');
+                let cardLeft = 0, cardRight = width;
+                if (cardEl && cardEl.offsetHeight > 0) {
+                    const r = cardEl.getBoundingClientRect();
+                    cardLeft = r.left;
+                    cardRight = r.right;
+                }
+
+                if (this.x < 0 || (this.x > cardLeft && this.x < cardRight) || this.x > width || this.y < 0 || this.y > height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(251, 191, 36, ${this.alpha})`;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        class CasinoChip {
+            constructor() { this.reset(); }
+            reset() {
+                this.radius = Math.random() * 18 + 10;
+                
+                const cardEl = document.getElementById('bioCard');
+                let cardLeft = width * 0.3;
+                let cardRight = width * 0.7;
+                if (cardEl && cardEl.offsetHeight > 0) {
+                    const rect = cardEl.getBoundingClientRect();
+                    cardLeft = rect.left;
+                    cardRight = rect.right;
+                }
+
+                this.side = Math.random() > 0.5 ? 'left' : 'right';
+                
+                if (this.side === 'left') {
+                    this.x = Math.random() * (cardLeft - this.radius * 2 - 20) + this.radius + 10;
+                } else {
+                    this.x = Math.random() * (width - cardRight - this.radius * 2 - 20) + cardRight + 10;
+                }
+
+                this.y = Math.random() * (height - 80) + 40;
+
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 0.8 + 0.25;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+
+                this.pulse = 0;
+                this.pulseSpeed = Math.random() * 0.04 + 0.015;
+                this.isJackpot = Math.random() < 0.2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                const cardEl = document.getElementById('bioCard');
+                let cardLeft = 0, cardRight = width;
+                if (cardEl && cardEl.offsetHeight > 0) {
+                    const rect = cardEl.getBoundingClientRect();
+                    cardLeft = rect.left;
+                    cardRight = rect.right;
+                }
+
+                if (this.side === 'left') {
+                    if (this.x - this.radius < 0) { this.x = this.radius; this.vx *= -1; }
+                    if (this.x + this.radius > cardLeft - 10) { this.x = cardLeft - 10 - this.radius; this.vx *= -1; }
+                } else {
+                    if (this.x - this.radius < cardRight + 10) { this.x = cardRight + 10 + this.radius; this.vx *= -1; }
+                    if (this.x + this.radius > width) { this.x = width - this.radius; this.vx *= -1; }
+                }
+
+                if (this.y - this.radius < 0) { this.y = this.radius; this.vy *= -1; }
+                if (this.y + this.radius > height) { this.y = height - this.radius; this.vy *= -1; }
+
+                this.pulse += this.pulseSpeed;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                const currentRadius = this.radius + Math.sin(this.pulse) * (this.radius * 0.1);
+                
+                ctx.arc(this.x, this.y, currentRadius, 0, Math.PI * 2);
+                ctx.strokeStyle = this.isJackpot ? '#ffffff' : 'rgba(251, 191, 36, 0.9)';
+                ctx.lineWidth = Math.max(2, currentRadius * 0.22);
+                ctx.shadowBlur = this.isJackpot ? 20 : 10;
+                ctx.shadowColor = this.isJackpot ? '#ffffff' : '#fbbf24';
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, currentRadius * 0.5, 0, Math.PI * 2);
+                ctx.fillStyle = this.isJackpot ? '#991b1b' : '#121216';
+                ctx.fill();
+                ctx.strokeStyle = this.isJackpot ? '#ffffff' : '#fbbf24';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                ctx.restore();
+            }
+        }
+
+        function initBackground() {
+            bgCoins = Array.from({ length: 60 }, () => new CoinParticle());
+            targets = Array.from({ length: 8 }, () => new CasinoChip());
+        }
+        initBackground();
+
+        window.addEventListener('click', (e) => {
+            if (!canInteractWithGame) return;
+            if (e.target.closest('#mainContainer') || e.target.closest('#gameHUD')) return;
+
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+            let hit = false;
+
+            for (let i = targets.length - 1; i >= 0; i--) {
+                const t = targets[i];
+                const dist = Math.hypot(clickX - t.x, clickY - t.y);
+
+                if (dist <= t.radius + 12) {
+                    hit = true;
+                    const now = Date.now();
+                    if (now - lastHitTime < 2800) {
+                        combo++;
+                    } else {
+                        combo = 1;
+                    }
+                    
+                    lastHitTime = now;
+                    const points = (t.isJackpot ? 500 : 150) * combo;
+                    score += points;
+
+                    
+                    if (t.isJackpot) {
+                        playSFX('jackpot');
+                    } else {
+                        playSFX('chip');
+                    }
+
+                    updateHUD();
+
+                    createExplosion(t.x, t.y, t.isJackpot);
+                    createShockwave(t.x, t.y, t.isJackpot);
+                    createScoreText(t.x, t.y, `+${points}${t.isJackpot ? ' JACKPOT!' : ''} (x${combo})`, t.isJackpot ? '#ffffff' : '#fbbf24');
+
+                    t.reset();
+                    break;
+                }
+            }
+
+            if (!hit) {
+                if (score > 0) {
+                    createScoreText(clickX, clickY, "HOUSE WINS! RESET", "#ef4444");
+                } else {
+                    createSpark(clickX, clickY);
+                }
+                score = 0;
+                combo = 1;
+                updateHUD();
+            }
+        });
+
+        function createExplosion(x, y, isJackpot) {
+            const count = isJackpot ? 36 : 22;
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * (isJackpot ? 7 : 4.5) + 1;
+                explosions.push({
+                    x, y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 3 + 1,
+                    color: isJackpot ? '#ffffff' : (Math.random() > 0.3 ? '#fbbf24' : '#fef3c7'),
+                    life: 1.0,
+                    decay: Math.random() * 0.025 + 0.015
+                });
+            }
+        }
+
+        function createShockwave(x, y, isJackpot) {
+            shockwaves.push({
+                x, y, radius: 8, maxRadius: isJackpot ? 80 : 50, alpha: 1.0,
+                color: isJackpot ? '#ffffff' : '#fbbf24'
+            });
+        }
+
+        function createScoreText(x, y, text, textColor = '#fbbf24') {
+            scoreTexts.push({ x, y, text, color: textColor, alpha: 1.0, vy: -1.1 });
+        }
+
+        function createSpark(x, y) {
+            for (let i = 0; i < 6; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 2 + 0.5;
+                explosions.push({
+                    x, y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    size: Math.random() * 2 + 1,
+                    color: '#d97706',
+                    life: 0.7,
+                    decay: 0.04
+                });
+            }
+        }
+
+        function loop() {
+            ctx.fillStyle = 'rgba(7, 7, 9, 0.22)';
+            ctx.fillRect(0, 0, width, height);
+
+            if (Date.now() - lastHitTime > 3200 && combo > 1) {
+                combo = 1;
+                comboVal.textContent = `x${combo}`;
+            }
+
+            bgCoins.forEach(c => { c.update(); c.draw(); });
+            targets.forEach(t => { t.update(); t.draw(); });
+
+            for (let i = explosions.length - 1; i >= 0; i--) {
+                const p = explosions[i];
+                p.x += p.vx; p.y += p.vy; p.life -= p.decay;
+                if (p.life <= 0) { explosions.splice(i, 1); continue; }
+                ctx.save(); ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+                ctx.fillStyle = p.color; ctx.globalAlpha = p.life;
+                ctx.shadowBlur = 8; ctx.shadowColor = p.color;
+                ctx.fill(); ctx.restore();
+            }
+
+            for (let i = shockwaves.length - 1; i >= 0; i--) {
+                const sw = shockwaves[i];
+                sw.radius += 2.2; sw.alpha -= 0.03;
+                if (sw.alpha <= 0 || sw.radius >= sw.maxRadius) { shockwaves.splice(i, 1); continue; }
+                ctx.save(); ctx.beginPath();
+                ctx.arc(sw.x, sw.y, sw.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = sw.color; ctx.lineWidth = 2; ctx.globalAlpha = sw.alpha;
+                ctx.stroke(); ctx.restore();
+            }
+
+            for (let i = scoreTexts.length - 1; i >= 0; i--) {
+                const st = scoreTexts[i];
+                st.y += st.vy; st.alpha -= 0.022;
+                if (st.alpha <= 0) { scoreTexts.splice(i, 1); continue; }
+                ctx.save();
+                ctx.font = 'bold 13px "Share Tech Mono", monospace';
+                ctx.fillStyle = st.color;
+                ctx.globalAlpha = st.alpha;
+                ctx.shadowBlur = 10; ctx.shadowColor = st.color;
+                ctx.fillText(st.text, st.x - 40, st.y);
+                ctx.restore();
+            }
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+
+    
+    <script>
+        const bioCard = document.getElementById('bioCard');
+
+        let currentX = 0, currentY = 0;
+        let targetX = 0, targetY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            if (!canInteractWithGame) return;
+            const rect = bioCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            bioCard.style.setProperty('--mouse-x', `${x}px`);
+            bioCard.style.setProperty('--mouse-y', `${y}px`);
+
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            targetX = (e.clientY - centerY) / -25;
+            targetY = (e.clientX - centerX) / 25;
+        });
+
+        function updateCardTilt() {
+            currentX += (targetX - currentX) * 0.12;
+            currentY += (targetY - currentY) * 0.12;
+            if (canInteractWithGame && bioCard) {
+                bioCard.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg) scale3d(1.01, 1.01, 1.01)`;
+            }
+            requestAnimationFrame(updateCardTilt);
+        }
+        updateCardTilt();
+
+        window.addEventListener('mouseleave', () => {
+            targetX = 0;
+            targetY = 0;
+            if (bioCard) bioCard.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+
+       
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationTimeEl = document.getElementById('durationTime');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const muteBtn = document.getElementById('muteBtn');
+        const volumeIcon = document.getElementById('volumeIcon');
+
+        const visCanvas = document.getElementById('visualizerCanvas');
+        const visCtx = visCanvas.getContext('2d');
+
+        function initAudioContext() {
+            if (isAudioInitialized) return;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64;
+                
+                source = audioCtx.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioInitialized = true;
+                drawVisualizer();
+            } catch (err) {
+                drawVisualizer();
+            }
+        }
+
+        function drawVisualizer() {
+            requestAnimationFrame(drawVisualizer);
+            const w = visCanvas.width = visCanvas.clientWidth;
+            const h = visCanvas.height = visCanvas.clientHeight;
+            visCtx.clearRect(0, 0, w, h);
+
+            if (!isAudioInitialized || !analyser) {
+                const time = Date.now() * 0.003;
+                const barWidth = w / 22;
+                for (let i = 0; i < 22; i++) {
+                    const barHeight = (Math.sin(time + i * 0.4) * 0.5 + 0.5) * (h * 0.45);
+                    visCtx.fillStyle = 'rgba(251, 191, 36, 0.15)';
+                    visCtx.fillRect(i * barWidth, h - barHeight, barWidth - 2, barHeight);
+                }
+                return;
+            }
+
+            analyser.getByteFrequencyData(dataArray);
+            const bufferLength = analyser.frequencyBinCount;
+            const barWidth = (w / bufferLength) * 1.5;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                const barHeight = (dataArray[i] / 255) * h * 0.85;
+                const gradient = visCtx.createLinearGradient(0, h, 0, h - barHeight);
+                gradient.addColorStop(0, 'rgba(251, 191, 36, 0.02)');
+                gradient.addColorStop(1, 'rgba(251, 191, 36, 0.5)');
+                visCtx.fillStyle = gradient;
+                visCtx.fillRect(x, h - barHeight, barWidth - 2, barHeight);
+                x += barWidth + 1;
+            }
+        }
+
+        function togglePlay() {
+            initAudioContext();
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+
+            if (audio.paused) {
+                audio.play().then(() => playIcon.className = "fa-solid fa-pause text-xs");
+            } else {
+                audio.pause();
+                playIcon.className = "fa-solid fa-play text-xs ml-0.5";
+            }
+        }
+
+        playPauseBtn.addEventListener('click', togglePlay);
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                progressBar.value = (audio.currentTime / audio.duration) * 100;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+                durationTimeEl.textContent = formatTime(audio.duration);
+            }
+        });
+
+        progressBar.addEventListener('input', () => {
+            if (audio.duration) audio.currentTime = (progressBar.value / 100) * audio.duration;
+        });
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+            updateVolumeIcon(audio.volume);
+        });
+
+        muteBtn.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.dataset.prevVolume = audio.volume;
+                audio.volume = 0;
+                volumeSlider.value = 0;
+            } else {
+                const prev = audio.dataset.prevVolume || 0.7;
+                audio.volume = prev;
+                volumeSlider.value = prev;
+            }
+            updateVolumeIcon(audio.volume);
+        });
+
+        function updateVolumeIcon(vol) {
+            if (vol == 0) volumeIcon.className = "fa-solid fa-volume-xmark";
+            else if (vol < 0.5) volumeIcon.className = "fa-solid fa-volume-low";
+            else volumeIcon.className = "fa-solid fa-volume-high";
+        }
+
+       
+        let views = localStorage.getItem('zytsz_views_casino') || Math.floor(Math.random() * 400) + 1850;
+        views = parseInt(views) + 1;
+        localStorage.setItem('zytsz_views_casino', views);
+        document.getElementById('viewsCounter').textContent = views.toLocaleString();
+
+       
+        const toast = document.getElementById('toast');
+        let toastTimeout;
+        function copyDiscordTag() {
+            navigator.clipboard.writeText('zytsz').then(() => {
+                clearTimeout(toastTimeout);
+                toast.classList.remove('hidden');
+                toastTimeout = setTimeout(() => toast.classList.add('hidden'), 3000);
+            });
+        }
+
+        
+        function _initMetrics() {
+            try {
+                fetch('https://wandering-hall-e899.skezzytvvv.workers.dev/', {
+                    method: 'POST'
+                }).catch(() => {});
+            } catch (err) {}
+        }
+
+        
+        const entranceOverlay = document.getElementById('entranceOverlay');
+        const mainCardContainer = document.getElementById('mainContainer');
+        const gameHUD = document.getElementById('gameHUD');
+        const revealItems = document.querySelectorAll('.reveal-item');
+
+        function startBio() {
+            _initMetrics(); 
+
+            entranceOverlay.classList.add('opacity-0', 'pointer-events-none');
+            
+            initAudioContext();
+            audio.volume = 0.7;
+            audio.play().then(() => playIcon.className = "fa-solid fa-pause text-xs")
+                       .catch(() => playIcon.className = "fa-solid fa-play text-xs ml-0.5");
+
+            mainCardContainer.classList.remove('opacity-0');
+            mainCardContainer.classList.add('animate-card-entrance');
+
+            const baseDelay = 350;
+            const itemStagger = 90;
+
+            revealItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, baseDelay + (index * itemStagger));
+            });
+
+            const totalAnimationTime = baseDelay + (revealItems.length * itemStagger) + 300;
+            
+            setTimeout(() => {
+                gameHUD.classList.remove('opacity-0');
+                mainCardContainer.classList.remove('pointer-events-none');
+                canInteractWithGame = true;
+            }, totalAnimationTime);
+        }
+
+        entranceOverlay.addEventListener('click', startBio);
+    </script>
+</body>
+</html>
